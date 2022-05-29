@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>SumterUtilities.ProductivityReport</AssemblyName>
+    <RootNamespace>SumterUtilities.ProductivityReport</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Interfaces\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
+</Project>

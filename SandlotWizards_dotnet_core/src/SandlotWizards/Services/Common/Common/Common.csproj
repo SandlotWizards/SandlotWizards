@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>SandlotWizards.Common</AssemblyName>
+    <RootNamespace>SandlotWizards.Common</RootNamespace>
+  </PropertyGroup>
+
+</Project>
