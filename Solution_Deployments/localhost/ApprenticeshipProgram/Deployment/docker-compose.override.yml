@@ -1,0 +1,204 @@
+services:
+  nginx:
+    container_name: nginx
+    ports:
+      - 443:443
+
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8001:8000"
+      - "9001:9000"
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  elasticsearch:
+    container_name: elasticsearch
+    ports:
+      - 9002:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+
+  kibana:
+    container_name: kibana
+    ports:
+      - 9003:5601
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+
+  redis:
+    container_name: redis
+    restart: always
+    ports:
+      - "9004:6379"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "9005:5672"
+      - "9006:15672"
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      - C:\\sui_docker_local_deployment\\configs\\RabbitMQ\\rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+
+  employeemgmt.heartbeat:
+    container_name: "employeemgmt.heartbeat"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=local
+      - ELASTIC_URI=http://elasticsearch:9200
+      - TZ=America/NewYork
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+      - Logging__LogLevel__Microsoft.Hosting.Lifetime=Information
+      - Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command=Warning
+      - Logging__LogLevel__Quartz=Warning
+      - Logging__LogLevel__Quartz.Core.QuartzSchedulerThread=Warning
+      - Logging__LogLevel__Quarts.Core.JobRunShell=Warning
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+      - RabbitMQConfig__Host=rabbitmq
+      - RabbitMQConfig__Port=5672
+      - RabbitMQConfig__UserName=guest
+      - RabbitMQConfig__Password=guest
+      - PrimaryDbConnectionConfig__ServerName=192.168.56.1
+      - PrimaryDbConnectionConfig__UserName=sa
+      - PrimaryDbConnectionConfig__Password=1151SYYZ2112Sumter
+      - HttpSettingsConfig__Scheme=https
+      - HttpSettingsConfig__SubDomain=employeemgmt
+      - HttpSettingsConfig__Domain=sumterportal.com
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+  employeemgmt.web:
+    container_name: "employeemgmt.web"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=local
+      - ELASTIC_URI=http://elasticsearch:9200
+      - TZ=America/NewYork
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+      - Logging__LogLevel__Microsoft.Hosting.Lifetime=Information
+      - Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command=Warning
+      - Logging__LogLevel__Quartz=Warning
+      - Logging__LogLevel__Quartz.Core.QuartzSchedulerThread=Warning
+      - Logging__LogLevel__Quarts.Core.JobRunShell=Warning
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+      - PrimaryDbConnectionConfig__ServerName=192.168.56.1
+      - PrimaryDbConnectionConfig__UserName=sa
+      - PrimaryDbConnectionConfig__Password=1151SYYZ2112Sumter
+      - IdentityServerSettings__ClientId=EmployeeMgmt.Web
+      - IdentityServerSettings__GrpcUri=http://auth.heartbeat
+      - HttpSettingsConfig__Scheme=https
+      - HttpSettingsConfig__SubDomain=employeemgmt
+      - HttpSettingsConfig__Domain=sumterportal.com
+      - SSLCertificateConfig__Filename_pfx=shawn_sumterportal.pfx
+      - SSLCertificateConfig__Password=xxSSLPasswordxx
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "C:\certs:/certs"
+
+
+  employeesmanagement.eventbus:
+    container_name: "employeesmanagement.eventbus"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=local
+      - ELASTIC_URI=http://elasticsearch
+      - RABBITMQ_HOSTNAME=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_VIRUALHOST=/
+      - TZ=America/New_York
+      - "ConnectionString_EmployeesManagement=Server=192.168.56.1;Database=EmployeesManagement;Persist Security Info=True;User ID=sa;Password=1151SYYZ2112Sumter;"
+      - "ConnectionString_MobileFrame=Server=192.168.56.1;Database=MobileFrame;Persist Security Info=True;User ID=sa;Password=1151SYYZ2112Sumter;"
+    ports:
+      - "7528:80"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+  
+  employeesmanagement.mfe:
+    container_name: "employeesmanagement.mfe"
+    restart: always
+    environment:
+      - TZ=America/New_York 
+    ports:
+      - "8529:80"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+      
+
+  apprenticeshipprogram.heartbeat:
+    container_name: "apprenticeshipprogram.heartbeat"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=local
+      - ELASTIC_URI=http://elasticsearch:9200
+      - TZ=America/NewYork
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+      - Logging__LogLevel__Microsoft.Hosting.Lifetime=Information
+      - Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command=Warning
+      - Logging__LogLevel__Quartz=Warning
+      - Logging__LogLevel__Quartz.Core.QuartzSchedulerThread=Warning
+      - Logging__LogLevel__Quarts.Core.JobRunShell=Warning
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+      - RabbitMQConfig__Host=rabbitmq
+      - RabbitMQConfig__Port=5672
+      - RabbitMQConfig__UserName=guest
+      - RabbitMQConfig__Password=guest
+      - PrimaryDbConnectionConfig__ServerName=192.168.56.1
+      - PrimaryDbConnectionConfig__UserName=sa
+      - PrimaryDbConnectionConfig__Password=1151SYYZ2112Sumter
+      - HttpSettingsConfig__Scheme=https
+      - HttpSettingsConfig__SubDomain=apprenticeshipprogram
+      - HttpSettingsConfig__Domain=sumterportal.com
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+  apprenticeshipprogram.web:
+    container_name: "apprenticeshipprogram.web"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=local
+      - ELASTIC_URI=http://elasticsearch:9200
+      - TZ=America/NewYork
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+      - Logging__LogLevel__Microsoft.Hosting.Lifetime=Information
+      - Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command=Warning
+      - Logging__LogLevel__Quartz=Warning
+      - Logging__LogLevel__Quartz.Core.QuartzSchedulerThread=Warning
+      - Logging__LogLevel__Quarts.Core.JobRunShell=Warning
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+      - PrimaryDbConnectionConfig__ServerName=192.168.56.1
+      - PrimaryDbConnectionConfig__UserName=sa
+      - PrimaryDbConnectionConfig__Password=1151SYYZ2112Sumter
+      - IdentityServerSettings__ClientId=ApprenticeshipProgram.Web
+      - IdentityServerSettings__GrpcUri=http://auth.heartbeat
+      - HttpSettingsConfig__Scheme=https
+      - HttpSettingsConfig__SubDomain=apprenticeshipprogram
+      - HttpSettingsConfig__Domain=sumterportal.com
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "C:\certs:/certs"
