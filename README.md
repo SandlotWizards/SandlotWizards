@@ -1,4 +1,3 @@
-
 # 🧙‍♂️ Sandlot Wizards
 
 Hi, I'm **Shawn Taylor**, also known as `SandlotWizard`. With over 30 years of experience in software development, system architecture, and solution design, I’m now focused on building developer tools that blend modern AI with proven engineering discipline.
@@ -37,3 +36,6 @@ Hi, I'm **Shawn Taylor**, also known as `SandlotWizard`. With over 30 years of e
 - Location: South Carolina, USA
 
 Let’s build something that lasts — and maybe feels a little like magic.
+
+## 📌 Project Roadmaps
+Track development progress in the [Sandlot.ActionLogger Project Board](https://github.com/users/SandlotWizards/projects/3)
