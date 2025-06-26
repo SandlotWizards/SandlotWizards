@@ -35,7 +35,7 @@ logger.LogInformation("Starting SandlotWizard CLI...");
 
 await CommandLineApp.Run(args, registry =>
 {
-    registry.Register("project", "create", app.Services.GetRequiredService<ProjectCreateCommand>());
+    //registry.Register("project", "create", app.Services.GetRequiredService<ProjectCreateCommand>());
     registry.Register("feature", "design", app.Services.GetRequiredService<FeatureDesignCommand>());
     registry.Register("feature", "plan", app.Services.GetRequiredService<FeaturePlanCommand>());
     registry.Register("feature", "build", app.Services.GetRequiredService<FeatureBuildCommand>());
