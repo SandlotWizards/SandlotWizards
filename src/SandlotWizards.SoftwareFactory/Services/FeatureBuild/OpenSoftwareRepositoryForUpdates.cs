@@ -14,7 +14,7 @@ internal partial class FeatureBuildService
                 contract.solution
             );
 
-            var repoUrl = $"https://github.com/{_gitHubConfig.Organization}/{contract.solution}.git";
+            var repoUrl = $"git@github.com:{_gitHubConfig.Organization}/{contract.solution}.git";
             var cloneExitCode = _shellCommandService.ExecuteCommand("git", $"clone {repoUrl} \"{targetPath}\"");
 
             if (cloneExitCode != 0)

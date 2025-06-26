@@ -14,7 +14,7 @@ internal partial class FeatureBuildService
                 "SandlotWizards"
             );
 
-            var repoUrl = $"https://github.com/{_gitHubConfig.Organization}/SandlotWizards.git";
+            var repoUrl = $"git@github.com:{_gitHubConfig.Organization}/SandlotWizards.git";
             if (!_softwareFactoryFileSystem.DirectoryExists(targetPath))
             {
                 var cloneExitCode = _shellCommandService.ExecuteCommand("git", $"clone {repoUrl} \"{targetPath}\"");
