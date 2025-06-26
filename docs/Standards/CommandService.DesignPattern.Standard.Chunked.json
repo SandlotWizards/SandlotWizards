@@ -1,0 +1,92 @@
+[
+  {
+    "id": "chunk_1",
+    "header": "\ud83d\udcd8 Purpose of This Document",
+    "content": "## \ud83d\udcd8 Purpose of This Document\n\nThis standard defines the **Command-Service Design Pattern** used throughout the Sandlot Software Factory. It governs the structure, behavior, and lifecycle of all command-driven service units.\n\nThis version is refactored to optimize for AI chunk retrieval first, while preserving human clarity.\n\n---"
+  },
+  {
+    "id": "chunk_2",
+    "header": "\ud83d\udd36 How to Use This Standard",
+    "content": "## \ud83d\udd36 How to Use This Standard\n\nUse this document as the single authoritative reference when implementing or reviewing a Command-Service unit. Each section answers one question. Do not skip sections; each is required.\n\n---"
+  },
+  {
+    "id": "chunk_3",
+    "header": "\ud83d\udfe8 What Are the Required Inputs for a Command-Service?",
+    "content": "## \ud83d\udfe8 What Are the Required Inputs for a Command-Service?\n\n| Name              | Type   | Required | Description                                       |\n| ----------------- | ------ | -------- | ------------------------------------------------- |\n| `solution`        | string | \u2705        | Name of the solution where this service operates  |\n| `project`         | string | \u2705        | Target project name                               |\n| `service-name`    | string | \u2705        | Name of the service being generated               |\n| `design-doc-path` | path   | \u2705        | Path to the `DesignSpec.md` to interpret          |\n| `--add`           | flag   | optional | Indicates a new behavior is added                 |\n| `--delete`        | flag   | optional | Indicates behavior or objects are removed         |\n| `--reset`         | flag   | optional | Resets the implementation                         |\n| `--refactor`      | flag   | optional | Refactors internal design without external change |\n| `--ai-rebuild`    | flag   | optional | Triggers full regeneration from AI pipeline       |\n\nExactly one or more of the flags must be passed.\n\n---"
+  },
+  {
+    "id": "chunk_4",
+    "header": "\ud83e\udde9 How Should Commands Be Implemented? (`{ServiceName}Command.cs`)",
+    "content": "## \ud83e\udde9 How Should Commands Be Implemented? (`{ServiceName}Command.cs`)\n\n- File name: `{ServiceName}Command.cs`\n- Namespace: `{SolutionName}.Commands`\n- Class declaration: `public sealed class {ServiceName}Command : ICommand`\n- Must not declare a constructor\n- Must define:\n  - `public string Name => \"...\";`\n  - `public string Description => \"...\";`\n  - One public property per input (see above)\n  - Method: `public async Task ExecuteAsync(CommandContext context)`"
+  },
+  {
+    "id": "chunk_5",
+    "header": "Behavior:",
+    "content": "### Behavior:\n\n- `ExecuteAsync` must begin with `ActionLog.Global.BeginStep(...)`\n- Must resolve orchestrator via `context.Resolve<I{ServiceName}Service>()`\n- Must call `await service.OrchestrateAsync(this);`\n\n---"
+  },
+  {
+    "id": "chunk_6",
+    "header": "\ud83e\udded How Should the Orchestrator Be Implemented? (`{ServiceName}Service.cs`)",
+    "content": "## \ud83e\udded How Should the Orchestrator Be Implemented? (`{ServiceName}Service.cs`)\n\n- File name: `{ServiceName}Service.cs`\n- Namespace: `{SolutionName}.Services.{ServiceName}Service`\n- Class declaration: `internal partial class {ServiceName}Service`\n- Constructor: must use explicit DI injection"
+  },
+  {
+    "id": "chunk_7",
+    "header": "Method `OrchestrateAsync()`:",
+    "content": "### Method `OrchestrateAsync()`:\n\n- Must begin with `ActionLog.Global.BeginStep(...)`\n- Must first call `ValidateContextAsync()` if it exists\n- If validation fails:\n  - Log using `ActionLog.Global.Error(...)`\n  - Return early\n- Then call SRP methods in logical sequence\n\n---"
+  },
+  {
+    "id": "chunk_8",
+    "header": "\u2699\ufe0f How to Implement SRP Partial Methods",
+    "content": "## \u2699\ufe0f How to Implement SRP Partial Methods\n\n- File: one per method (e.g., `CreateWorkspace.cs`)\n- Each method:\n  - Must be declared `private async Task`\n  - Must begin with `ActionLog.Global.BeginStep(...)`\n  - Must perform only one logical responsibility\n  - Must not share state unless via readonly DI\n  - Return values (e.g. `ValidationResult`) must be evaluated in orchestrator\n\n---"
+  },
+  {
+    "id": "chunk_9",
+    "header": "\ud83d\udd0d How to Handle Context Validation",
+    "content": "## \ud83d\udd0d How to Handle Context Validation"
+  },
+  {
+    "id": "chunk_10",
+    "header": "`ValidateContextAsync()` method (optional but recommended):",
+    "content": "### `ValidateContextAsync()` method (optional but recommended):\n\n- Must be first method called in `OrchestrateAsync`\n- Used to check external conditions, existence, auth, etc.\n- If omitted, your design must address risks of partial execution"
+  },
+  {
+    "id": "chunk_11",
+    "header": "If Validation Fails:",
+    "content": "### If Validation Fails:\n\n- Log the error clearly\n- Do not continue SRP execution\n\n---"
+  },
+  {
+    "id": "chunk_12",
+    "header": "\ud83d\udee1 How to Prevent Partial Execution Risk",
+    "content": "## \ud83d\udee1 How to Prevent Partial Execution Risk\n\nIf validation is omitted or scattered:\n\n- Your service may partially execute and corrupt state\n- This is considered a design flaw\n- Either centralize checks or explicitly accept and mitigate the risk\n\n---"
+  },
+  {
+    "id": "chunk_13",
+    "header": "\ud83d\udd10 How to Manage State and Dependency Injection",
+    "content": "## \ud83d\udd10 How to Manage State and Dependency Injection\n\n- Only readonly DI fields are allowed\n- Avoid shared mutable state\n- Public properties must be justified if used for tracking or state transfer\n\n---"
+  },
+  {
+    "id": "chunk_14",
+    "header": "\ud83d\udce6 What Files Should Be Generated by This Pattern?",
+    "content": "## \ud83d\udce6 What Files Should Be Generated by This Pattern?\n\n```\nsource_code/Commands/\n  {ServiceName}Command.cs\n\nsource_code/Services/{ServiceName}Service/\n  {ServiceName}Service.cs\n  {MethodName}.cs\n\ncopilot_instructions/\n  CopilotInstructions.json\n```\n\n---"
+  },
+  {
+    "id": "chunk_15",
+    "header": "\ud83e\ude9b How to Build Post-AI Execution Instructions",
+    "content": "## \ud83e\ude9b How to Build Post-AI Execution Instructions\n\nIn `CopilotInstructions.json`, include:\n\n```powershell\n\"echo lore get-repo --repo-name {solution} --branch {ecId}\"\n\"echo Expand-Archive -Path './copilot_output.zip' -DestinationPath './working/{ecId}/source_code'\"\n\"echo copy ./working/{ecId}/source_code/* to ./repos/{solution}/src/\"\n\"echo lore get-commit --message \\\"Adding command-service for {ServiceName}\\\"\"\n\"echo lore get-push\"\n\"echo Remove-Item -Recurse -Force ./working/{ecId}\"\n```\n\n---"
+  },
+  {
+    "id": "chunk_16",
+    "header": "\ud83d\udd0d How to Enforce Structured Logging",
+    "content": "## \ud83d\udd0d How to Enforce Structured Logging\n\n- Every orchestrator and SRP method must use `ActionLog.Global.BeginStep(...)`\n- Optional: use `ActionLog.Global.Step(...)` for substeps\n- No manual numbering allowed in log messages\n\n---"
+  },
+  {
+    "id": "chunk_17",
+    "header": "\ud83d\udd04 How This Pattern Evolves",
+    "content": "## \ud83d\udd04 How This Pattern Evolves\n\nYou may extend this pattern with structured validators, response builders, or domain-level abstractions \u2014 **only** if the core orchestration and service isolation principles remain intact.\n\n---"
+  },
+  {
+    "id": "chunk_18",
+    "header": "\ud83d\udcd8 Additional Rules",
+    "content": "## \ud83d\udcd8 Additional Rules\n\nThis standard works in concert with:\n\n- `Core.SoftwareDevelopment.Standard.md`\n- `ActionLogger.Factory.Usage.Standard.md`\n\nAI must not call platform APIs directly \u2014 all interaction must go through approved interfaces (file system, datetime, SQL, etc.)."
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SandlotWizards.Copilot": {
+      "commandName": "Project",
+      "commandLineArgs": "feature build --solution SandlotWizards --feature project-create-command"
+    }
+  }
+}

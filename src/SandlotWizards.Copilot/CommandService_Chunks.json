@@ -1,0 +1,405 @@
+[
+  {
+    "id": "chunk_1",
+    "title": "Untitled 1",
+    "level": "",
+    "content": "# \ud83e\uddf1 CommandService Design Pattern Standard",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 1,
+      "section_title": "Untitled 1",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_2",
+    "title": "Untitled 2",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 2,
+      "section_title": "Untitled 2",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_3",
+    "title": "\u26a0 Canonical Enforcement Notice",
+    "level": "##",
+    "content": "## \u26a0 Canonical Enforcement Notice\n\nThis document defines a **canonical design pattern standard** for all Command-Service units within the Sandlot Software Factory.\u00a0All implementations using this pattern shall conform to the structural, behavioral, and organizational principles described herein.\u00a0This pattern is the foundational building block for AI pipelines, product factories, and orchestrated service logic.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 3,
+      "section_title": "\u26a0 Canonical Enforcement Notice",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_4",
+    "title": "Untitled 4",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 4,
+      "section_title": "Untitled 4",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_5",
+    "title": "\ud83d\udcd8 Purpose",
+    "level": "##",
+    "content": "## \ud83d\udcd8 Purpose\n\nTo standardize the architecture of command-driven service units by defining clear boundaries between command responsibilities, handler orchestration, and core business logic.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 5,
+      "section_title": "\ud83d\udcd8 Purpose",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_6",
+    "title": "Untitled 6",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 6,
+      "section_title": "Untitled 6",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_7",
+    "title": "\ud83d\udc82 Scope",
+    "level": "##",
+    "content": "## \ud83d\udc82 Scope\n\nThis pattern applies to all command-service components whether built manually, via AI pipeline, or through CLI tooling.\\\nIt governs their structure, folder layout, naming conventions, and execution responsibilities.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 7,
+      "section_title": "\ud83d\udc82 Scope",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_8",
+    "title": "Untitled 8",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 8,
+      "section_title": "Untitled 8",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_9",
+    "title": "\ud83e\uddfe Command Service Inputs",
+    "level": "##",
+    "content": "## \ud83e\uddfe Command Service Inputs\n\nAll Command-Service units must support the following canonical inputs. These parameters are standardized across the Sandlot Software Factory and define the structure and intent of the command.\n\n| Name              | Type   | Required | Description                                                             |\n| ----------------- | ------ | -------- | ----------------------------------------------------------------------- |\n| `solution`        | string | \u2705       | Name of the solution where this service operates (e.g., `EmployeeMgmt`) |\n| `project`         | string | \u2705       | Target project name (e.g., `EmployeeMgmt.Domain`)                       |\n| `service-name`    | string | \u2705       | Name of the service being generated (e.g., `FeatureDesign`)             |\n| `design-doc-path` | path   | \u2705       | Path to the source `DesignSpec.md`                                      |\n| `--add`           | flag   | Optional | Indicates this command adds behavior or features                        |\n| `--delete`        | flag   | Optional | Indicates this command deletes behavior or files                        |\n| `--reset`         | flag   | Optional | Resets the current design implementation                                |\n| `--refactor`      | flag   | Optional | Refactors internal design without changing external behavior            |\n| `--ai-rebuild`    | flag   | Optional | Triggers a full regeneration of the implementation from AI              |\n\nExactly one or more of the flags (`--add`, `--delete`, `--reset`, `--refactor`, `--ai-rebuild`) must be present to clarify the type of engineering change.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 9,
+      "section_title": "\ud83e\uddfe Command Service Inputs",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_10",
+    "title": "Untitled 10",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 10,
+      "section_title": "Untitled 10",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_11",
+    "title": "\u2753 Instructions to Ai",
+    "level": "##",
+    "content": "## \u2753 Instructions to Ai\n\n> \u26a0\ufe0f AI Behavior Routing AI must not be instructed directly in a separate `Prompt.md`. Instead, each `DesignSpec.md` shall include a dedicated `Prompt Message` section that serves as the single source of truth for AI behavior instructions. The `Prompt Message` must be copied verbatim into the web interface or used directly in the contract-building step of the AI pipeline. No other source shall define or override the prompt.\n>\n> When implementing this standard, metadata such as `solution`, `project`, `service-name`, `design-doc-path`, and `change-type` must be made available to the AI. This can be achieved in one of two ways:\n>\n> 1. **Contract File** \u2014 Include a fully populated `Contract.md` alongside `DesignSpec.md` as a project file. The contract must include all required metadata.\n> 2. **Inline Context** \u2014 Append a `Context:` block to the `Prompt Message` within `DesignSpec.md`, declaring the values explicitly.\n>\n> Either method is valid. The prompt itself must remain declarative and must not contain instructions beyond referencing the spec documents and conveying metadata.\n\n**In addition to this document, AI must also follow the foundational development and abstraction rules described in `Core.SoftwareDevelopment.Standard.md`.** This includes\u2014but is not limited to\u2014use of approved interfaces for file system access, shell execution, datetime, SQL interaction, and AI integration. AI must never call raw platform APIs (e.g., `System.IO`, `DateTime.UtcNow`, `Process.Start`, or `SqlConnection`) directly. All such behavior must be implemented using the interfaces and service abstractions defined in the core standard.\n\nThis document defines a reusable design pattern, not a specific implementation. Each time the Command-Service pattern is applied, an accompanying `DesignSpec.md` will define the instance-specific details\u2014such as property names, inputs, and execution requirements. This specification governs the _how_, while the `DesignSpec.md` governs the _what_. You must interpret and implement the instance accordingly.\n\nAs a software engineer inside the Sandlot Software Factory you will be tasked with generating source code using the Command-Service design pattern described in this specification. Your specific tasks are defined in the number list that follows.\n\n1. Begin by reading this document section by section\n2. Use the `Output File and Folder Structure` as the canonical layout\n3. Implement the command class (`{ServiceName}Command.cs`) by reading the **Command Inputs** section of the instance-specific `DesignSpec.md`. Use the field names and types declared there to define the public properties of the command class. See the **Command Decision Matrix** section for structural rules.\n4. Extend the command class to implement `ICommand` from `Sandlot.CommandLineParser`. Define the method `Task ExecuteAsync(CommandContext context)`. This method must begin with `ActionLog.Global.BeginStep(...)`, then delegate to `OrchestrateAsync(...)` on the `{ServiceName}Service` orchestrator. Do not implement business logic here.\n5. Implement the orchestrator (`{ServiceName}Service.cs`) using the rules defined in the **Orchestrator Decision Matrix** section. If `ValidateContextAsync` is implemented, it must be the first method called. If it returns a failed validation result, the orchestrator must log an error using `ActionLog.Global.Error(...)` and terminate gracefully. This behavior is governed by the rules in the **Context Validation** section. If validation is omitted or incomplete, be aware of the consequences described in the **Partial Execution Risk** section. After validation, execute the SRP methods in the prescribed sequence.\n6. Implement each SRP method in a separate file using the rules in the SRP Partial Methods Decision Matrix section. Each method must encapsulate a single logical responsibility and begin with ActionLog.Global.BeginStep(...). The exact methods to implement, including their names, order, and purpose, must match those listed in the Detailed Design Outputs section of the corresponding DesignSpec.md. If any SRP method involves readiness checks, those responsibilities should be delegated to ValidateContextAsync per the Context Validation section. Failure to centralize preconditions in validation may lead to inconsistency\u2014see the Partial Execution Risk section for implications.\n7. Implement state and property handling according to the rules defined in the **State & Property Guidelines** section. Ensure only readonly dependencies are injected and mutable properties are justified and documented.\n\nAll generated services must conform to this pattern **without exception**. Do not invent or omit behavior. When in doubt, defer to the standards in this document.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 11,
+      "section_title": "\u2753 Instructions to Ai",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_12",
+    "title": "Untitled 12",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 12,
+      "section_title": "Untitled 12",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_13",
+    "title": "\ud83e\uddf1 Output File and Folder Structure",
+    "level": "##",
+    "content": "## \ud83e\uddf1 Output File and Folder Structure\n\nEach Command-Service unit shall consist of the following files:\n\n> \u26a0\ufe0f Note: The `source_code/` folder is a generated staging area. Copilot is responsible for relocating files into their final target repositories via post-AI execution instructions.\n\n```\nsource_code/Commands/\n  {ServiceName}Command.cs\n\nsource_code/Services/{ServiceName}Service/\n  {ServiceName}Service.cs                  <-- Orchestrator\n  {MethodName}.cs                          <-- SRP methods (one per file)\n\ncopilot_instructions/\n  CopilotInstructions.json                <-- AI-authored instructions for Copilot to execute\n```\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 13,
+      "section_title": "\ud83e\uddf1 Output File and Folder Structure",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_14",
+    "title": "Untitled 14",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 14,
+      "section_title": "Untitled 14",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_15",
+    "title": "\ud83e\udded Post-AI Execution Instructions",
+    "level": "##",
+    "content": "## \ud83e\udded Post-AI Execution Instructions\n\nThe `copilot_instructions/CopilotInstructions.json` file defines post-processing actions that Copilot must take after the AI has completed its task. This file is AI-authored, declarative, and fully determined by the design specification and standards\u2014AI must not invent or infer.\n\nEach instruction in this file must correspond to a valid, deterministic Copilot action. For this pattern, Copilot expects a complete execution script capable of being echoed and later executed. AI must output the following commands in a structured JSON array of powershell-compatible strings:\n\n```powershell\n\"echo lore get-repo --repo-name {solution} --branch {ecId}\"\n\"echo Expand-Archive -Path './copilot_output.zip' -DestinationPath './working/{ecId}/source_code'\"\n\"echo copy ./working/{ecId}/source_code/* to ./repos/{solution}/src/\"\n\"echo lore get-commit --message \\\"Adding command-service for {ServiceName}\\\"\"\n\"echo lore get-push\"\n\"echo Remove-Item -Recurse -Force ./working/{ecId}\"\n```\n\nCopilot will evaluate these lines and either:\n\n- Display them for review\n- Log them for audit\n- Execute them in sequence (in future phases)\n\nThis separation ensures AI focuses on generation and intent, while Copilot focuses on reproducible, governed execution.\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 15,
+      "section_title": "\ud83e\udded Post-AI Execution Instructions",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_16",
+    "title": "Untitled 16",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 16,
+      "section_title": "Untitled 16",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_17",
+    "title": "\ud83d\udcdc Command Decision Matrix (`{ServiceName}Command.cs`)",
+    "level": "##",
+    "content": "## \ud83d\udcdc Command Decision Matrix (`{ServiceName}Command.cs`)\n\n- The command class must be named `{ServiceName}Command`\n- The file name must match: `{ServiceName}Command.cs`\n- The namespace must be `{SolutionName}.Commands`\n- The class must be declared `public sealed`\n- The class must include no constructor (default constructor only)\n- Must define `public string Name => \"command-name\";`\n- Must define `public string Description => \"...\";`\n- Input properties:\n  - Use `required` for inputs explicitly marked as required in `DesignSpec.md`\n  - Use `public string? { get; init; }` for optional inputs\n  - Types must match exactly as defined in `DesignSpec.md`\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 17,
+      "section_title": "\ud83d\udcdc Command Decision Matrix (`{ServiceName}Command.cs`)",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_18",
+    "title": "Untitled 18",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 18,
+      "section_title": "Untitled 18",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_19",
+    "title": "\ud83d\udcc4 Orchestrator Decision Matrix (`{ServiceName}Service.cs`)",
+    "level": "##",
+    "content": "## \ud83d\udcc4 Orchestrator Decision Matrix (`{ServiceName}Service.cs`)\n\n- The orchestrator class must be declared `internal partial class {ServiceName}Service`\n- The class must use explicit constructor injection for all dependencies\n- The primary method must be named `OrchestrateAsync()`\n- The method must be declared `internal`\n- The method must begin with `ActionLog.Global.BeginStep(...)`\n- The method must call `ValidateContextAsync()` first (if implemented)\n- If validation fails, the orchestrator must log the failure using `ActionLog.Global.Error(...)` and terminate gracefully\n- After validation, the orchestrator must invoke SRP partial methods in logical order\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 19,
+      "section_title": "\ud83d\udcc4 Orchestrator Decision Matrix (`{ServiceName}Service.cs`)",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_20",
+    "title": "Untitled 20",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 20,
+      "section_title": "Untitled 20",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_21",
+    "title": "\ud83e\uddf9 SRP Partial Methods Decision Matrix",
+    "level": "##",
+    "content": "## \ud83e\uddf9 SRP Partial Methods Decision Matrix\n\n- Each method must be in its own file named `{MethodName}.cs`\n- Methods must be declared `private`\n- Each method must implement a single logical responsibility (pure SRP)\n- Each method must begin with `ActionLog.Global.BeginStep(...)`\n- Nested log steps using `ActionLog.Global.Step(...)` are allowed when meaningful\n- If a method returns a value, it must return a strongly typed result object (e.g., `ValidationResult`)\n- Result evaluation must occur in the orchestrator, not within the SRP method\n- Method names must follow a verb-object convention (e.g., `CreateWorkspaceAsync`)\n- Method files must not declare shared mutable properties or expose global state\n- Shared state across SRPs is discouraged unless explicitly readonly and injected\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 21,
+      "section_title": "\ud83e\uddf9 SRP Partial Methods Decision Matrix",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_22",
+    "title": "Untitled 22",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 22,
+      "section_title": "Untitled 22",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_23",
+    "title": "\ud83d\udd10 State & Property Guidelines",
+    "level": "##",
+    "content": "## \ud83d\udd10 State & Property Guidelines\n\n- Shared state across partials is strongly discouraged\n- Only `readonly` DI fields declared in the orchestrator are allowed\n- Any high-level mutable property must be explicitly justified and documented due to test coupling risk\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 23,
+      "section_title": "\ud83d\udd10 State & Property Guidelines",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_24",
+    "title": "Untitled 24",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 24,
+      "section_title": "Untitled 24",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_25",
+    "title": "\u26a0 Context Validation (`ValidateContextAsync`)",
+    "level": "##",
+    "content": "## \u26a0 Context Validation (`ValidateContextAsync`)\n\n- Optional but strongly recommended\n- Validates required preconditions for execution (e.g., file existence, user auth, external service availability)\n- Must be the **first method** invoked by `Orchestrate*`\n- If omitted, the design must explicitly address the risks of partial execution\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 25,
+      "section_title": "\u26a0 Context Validation (`ValidateContextAsync`)",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_26",
+    "title": "Untitled 26",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 26,
+      "section_title": "Untitled 26",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_27",
+    "title": "\ud83d\udd0d Partial Execution Risk",
+    "level": "##",
+    "content": "## \ud83d\udd0d Partial Execution Risk\n\nIf required preconditions are not enforced in `ValidateContextAsync` and instead fail during mid-execution, the service risks entering a **partial execution state**. This may:\n\n- Cause data or process inconsistency\n- Require compensation logic\n- Be considered an architectural failure unless documented and mitigated\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 27,
+      "section_title": "\ud83d\udd0d Partial Execution Risk",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_28",
+    "title": "Untitled 28",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 28,
+      "section_title": "Untitled 28",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_29",
+    "title": "\ud83d\udd0d Structured Logging Requirements",
+    "level": "##",
+    "content": "## \ud83d\udd0d Structured Logging Requirements\n\n- All services must follow the `ActionLogger.Factory.Usage.Standard.md`\n- Logging must use `ActionLog.Global.BeginStep(...)` in orchestrators and all partial methods\n- `ActionLog.Global.Step(...)` is optional but encouraged when clarity benefits\n- Manual numbering in step titles is prohibited\n- All code assumes `ActionLog.Global` has been initialized by the host\n\n---",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 29,
+      "section_title": "\ud83d\udd0d Structured Logging Requirements",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_30",
+    "title": "Untitled 30",
+    "level": "",
+    "content": "",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 30,
+      "section_title": "Untitled 30",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  },
+  {
+    "id": "chunk_31",
+    "title": "\ud83e\uddd0 Continuous Improvement",
+    "level": "##",
+    "content": "## \ud83e\uddd0 Continuous Improvement\n\nThis design pattern may evolve to support additional concepts such as structured validators, response builders, or domain-level conventions. All changes must preserve orchestration clarity and service isolation.",
+    "metadata": {
+      "source": "CommandService.DesignPattern.Standard.v3.md",
+      "section_index": 31,
+      "section_title": "\ud83e\uddd0 Continuous Improvement",
+      "design_pattern": "CommandService",
+      "type": "standard"
+    }
+  }
+]

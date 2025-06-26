@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>c03f84ba-f77d-4f6c-917b-54876dd94f61</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SandlotWizards.ActionLogger\SandlotWizards.ActionLogger.csproj" />
+    <ProjectReference Include="..\SandlotWizards.CommandLineParser\SandlotWizards.CommandLineParser.csproj" />
+    <ProjectReference Include="..\SandlotWizards.Core\SandlotWizards.Core.csproj" />
+    <ProjectReference Include="..\SandlotWizards.OpenAi\SandlotWizards.OpenAi.csproj" />
+    <ProjectReference Include="..\SandlotWizards.SoftwareFactory\SandlotWizards.SoftwareFactory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

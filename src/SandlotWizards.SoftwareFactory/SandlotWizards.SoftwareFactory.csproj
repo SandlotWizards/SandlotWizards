@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SandlotWizards.ActionLogger\SandlotWizards.ActionLogger.csproj" />
+    <ProjectReference Include="..\SandlotWizards.AiPipelines\SandlotWizards.AiPipelines.csproj" />
+    <ProjectReference Include="..\SandlotWizards.CommandLineParser\SandlotWizards.CommandLineParser.csproj" />
+    <ProjectReference Include="..\SandlotWizards.Core\SandlotWizards.Core.csproj" />
+  </ItemGroup>
+
+</Project>
