@@ -13,4 +13,8 @@
     <ProjectReference Include="..\SandlotWizards.Core\SandlotWizards.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+
 </Project>

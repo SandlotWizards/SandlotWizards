@@ -1,28 +1,23 @@
-﻿using SandlotWizards.SoftwareFactory.Services.FeatureBuild.Models;
-using SandlotWizards.AiPipelines.Models;
+﻿using SandlotWizards.AiPipelines.Contracts;
+using SandlotWizards.SoftwareFactory.Services.FeatureBuild.Builder;
+using SandlotWizards.SoftwareFactory.Services.FeatureBuild.Models;
 
 namespace SandlotWizards.SoftwareFactory.Services.FeatureBuild.Adapters
 {
-    public class FeatureBuildAiContractAdapter : IAiContract
+    public class FeatureBuildAiContractAdapter : AiCallContractBase
     {
-        private readonly Contract _source;
+        private readonly Contract _contract;
 
-        public FeatureBuildAiContractAdapter(Contract source)
+        public FeatureBuildAiContractAdapter(Contract contract)
         {
-            _source = source;
+            _contract = contract;
+            ExecutionContextId = contract.ExecutionContextId;
+            Standards = contract.WorkingContext.Standards;
+            Messages = [ new AiMessage { Role="user", Content = PromptBuilder.BuildUserPrompt(
+                _contract.feature,
+                _contract.DesignSpecText,
+                _contract.WorkingContext.RagChunks
+            )}];
         }
-
-        public string PromptText =>
-            _source.DesignSpecText + "\n" + _source.ContractText;
-
-        public Dictionary<string, string> ContextFiles =>
-            new()
-            {
-                { "DesignSpec.md", _source.DesignSpecText },
-                { "ExecutionPlan.md", _source.ExecutionPlanText },
-                { "Contract.md", _source.ContractText }
-            };
-
-        public string ExecutionContextId => _source.ExecutionContextId;
     }
 }

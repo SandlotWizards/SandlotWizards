@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddOpenAiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpClient<IAiPipelineService, OpenAiService>()
+        services.AddHttpClient<IAiExecutionService, OpenAiExecutionService>()
             .AddHttpMessageHandler<ActionLogHttpHandler>();
         services.AddTransient<ActionLogHttpHandler>();
 

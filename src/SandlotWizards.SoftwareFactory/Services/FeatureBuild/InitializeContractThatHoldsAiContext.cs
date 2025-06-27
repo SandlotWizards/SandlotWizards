@@ -1,6 +1,6 @@
 using SandlotWizards.ActionLogger;
+using SandlotWizards.AiPipelines.Contracts;
 using SandlotWizards.SoftwareFactory.Commands;
-using SandlotWizards.SoftwareFactory.Models;
 using SandlotWizards.SoftwareFactory.Services.FeatureBuild.Models;
 
 namespace SandlotWizards.SoftwareFactory.Services;

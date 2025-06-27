@@ -1,5 +1,5 @@
 ﻿using SandlotWizards.ActionLogger;
-using SandlotWizards.SoftwareFactory.Models;
+using SandlotWizards.AiPipelines.Contracts;
 using SandlotWizards.SoftwareFactory.Services.FeatureBuild.Models;
 
 namespace SandlotWizards.SoftwareFactory.Services;
