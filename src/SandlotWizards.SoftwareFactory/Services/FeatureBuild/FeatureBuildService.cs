@@ -15,7 +15,7 @@ internal partial class FeatureBuildService : IFeatureBuildService
     private readonly IShellCommandService _shellCommandService;
     private readonly GitHubConfig _gitHubConfig;
     private readonly IRagRetriever _ragRetriever;
-    private readonly IAiPipelineService _aiPipelineService;
+    private readonly IAiExecutionService _aiExecutionService;
 
     public FeatureBuildService(
         ISoftwareFactoryWorkingFileSystemService softwareFactoryFileSystem,
@@ -23,14 +23,14 @@ internal partial class FeatureBuildService : IFeatureBuildService
         IShellCommandService shellCommandService,
         IOptions<GitHubConfig> gitHubConfig,
         IRagRetriever ragRetriever,
-        IAiPipelineService aiPipelineService)
+        IAiExecutionService aiExecutionService)
     {
         _softwareFactoryFileSystem = softwareFactoryFileSystem;
         _fileStoreFileSystem = fileStoreFileSystem;
         _shellCommandService = shellCommandService;
         _gitHubConfig = gitHubConfig.Value;
         _ragRetriever = ragRetriever;
-        _aiPipelineService = aiPipelineService;
+        _aiExecutionService = aiExecutionService;
     }
 
     public async Task ExecuteAsync(FeatureBuildCommand command)

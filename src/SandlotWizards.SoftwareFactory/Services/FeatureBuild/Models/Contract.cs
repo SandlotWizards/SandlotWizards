@@ -1,3 +1,4 @@
+using SandlotWizards.AiPipelines.Contracts;
 using SandlotWizards.SoftwareFactory.Models;
 
 namespace SandlotWizards.SoftwareFactory.Services.FeatureBuild.Models;

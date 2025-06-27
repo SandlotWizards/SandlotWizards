@@ -18,16 +18,16 @@ internal partial class FeatureBuildService
 
             foreach (var file in contract.WorkingContext.GeneratedFiles)
             {
-                file.path = file.path.Replace('/', Path.DirectorySeparatorChar);
-                file.path = file.path.Replace("source_code", Path.Combine("src", "SandlotWizards.SoftwareFactory"));
-                var fullPath = Path.Combine(repoRoot, file.path);
+                file.Path = file.Path.Replace('/', Path.DirectorySeparatorChar);
+                file.Path = file.Path.Replace("source_code", Path.Combine("src", "SandlotWizards.SoftwareFactory"));
+                var fullPath = Path.Combine(repoRoot, file.Path);
                 var directory = Path.GetDirectoryName(fullPath)!;
 
                 _softwareFactoryFileSystem.CreateDirectory(directory);
-                await _softwareFactoryFileSystem.WriteFileAsync(fullPath, file.content);
+                await _softwareFactoryFileSystem.WriteFileAsync(fullPath, file.Content);
 
-                generatedPaths.Add(file.path);
-                ActionLog.Global.Info($"Wrote: {file.path}");
+                generatedPaths.Add(file.Path);
+                ActionLog.Global.Info($"Wrote: {file.Path}");
             }
 
             var manifestPath = Path.Combine(

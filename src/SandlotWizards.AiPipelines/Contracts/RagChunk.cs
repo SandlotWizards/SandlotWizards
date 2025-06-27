@@ -1,4 +1,4 @@
-﻿namespace SandlotWizards.SoftwareFactory.Models
+﻿namespace SandlotWizards.AiPipelines.Contracts
 {
     public class RagChunk
     {

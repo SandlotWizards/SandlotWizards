@@ -1,9 +1,9 @@
-﻿using SandlotWizards.AiPipelines.Models;
+﻿using SandlotWizards.AiPipelines.Contracts;
 
-namespace SandlotWizards.AiPipeline.Interfaces
+namespace SandlotWizards.AiPipelines.Interfaces
 {
     public interface IAiExecutionService
     {
-        Task<List<GeneratedFile>> ExecuteAsync(IAiContract contract, CancellationToken token = default);
+        Task<AiUnifiedResult> ExecuteAsync(AiCallContractBase contract, CancellationToken token = default);
     }
 }
