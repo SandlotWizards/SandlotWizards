@@ -1,6 +1,1 @@
-[
-  "src\\SandlotWizards.SoftwareFactory\\Commands\\ProjectCreateCommand.cs",
-  "src\\SandlotWizards.SoftwareFactory\\Services\\ProjectCreateService\\ProjectCreateService.cs",
-  "src\\SandlotWizards.SoftwareFactory\\Services\\ProjectCreateService\\ValidateContextAsync.cs",
-  "src\\SandlotWizards.SoftwareFactory\\Services\\ProjectCreateService\\AddDomainProjectAsync.cs"
-]
+[]
