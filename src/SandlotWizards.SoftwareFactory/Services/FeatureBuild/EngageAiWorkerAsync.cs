@@ -20,11 +20,8 @@ internal partial class FeatureBuildService
 
             contract.WorkingContext.GeneratedFiles = result.GeneratedFiles;
 
-            if (result.ExecutionPlan.Steps.Any())
-                await SaveExecutionPlanAsync(result.ExecutionPlan, contract);
-
-            if (result.PromptCalls.Any())
-                await SavePromptCallsAsync(result.PromptCalls, contract);
+            if (result.FanoutPlan.Steps.Any())
+                await SaveExecutionPlanAsync(result.FanoutPlan, contract);
 
             if (result.ShellCommands.Any())
             {
@@ -36,7 +33,7 @@ internal partial class FeatureBuildService
         }
     }
 
-    private async Task SaveExecutionPlanAsync(ExecutionPlan plan, Contract contract)
+    private async Task SaveExecutionPlanAsync(FanoutPlan plan, Contract contract)
     {
         using (ActionLog.Global.BeginStep("Saving ExecutionPlan.yaml to working directory."))
         {

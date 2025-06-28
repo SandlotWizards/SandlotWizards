@@ -1,6 +1,6 @@
 ﻿namespace SandlotWizards.AiPipelines.Contracts;
 
-public class ExecutionPlanStep
+public class FanOutPlanStep
 {
     public required string Type { get; set; } // "prompt" or "command"
     public required string Description { get; set; }

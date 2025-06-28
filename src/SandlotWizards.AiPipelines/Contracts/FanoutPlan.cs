@@ -1,8 +1,8 @@
 ﻿namespace SandlotWizards.AiPipelines.Contracts;
 
-public class ExecutionPlan
+public class FanoutPlan
 {
-    public List<ExecutionPlanStep> Steps { get; set; } = new();
+    public List<FanOutPlanStep> Steps { get; set; } = new();
     public List<WorkingStandard> Standards { get; set; } = new();
     public List<string> SpecPaths { get; set; } = new();
 }

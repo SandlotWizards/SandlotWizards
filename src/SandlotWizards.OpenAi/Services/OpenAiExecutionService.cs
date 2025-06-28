@@ -23,8 +23,12 @@ namespace SandlotWizards.OpenAi
 
         public async Task<AiUnifiedResult> ExecuteAsync(AiCallContractBase contract, CancellationToken token = default)
         {
-            var systemPrompt = OpenAiSystemPrompts.ExecuteUnifiedResult;
+            var systemPrompt = OpenAiSystemPrompts.GlobalOutputRule + "\n" +
+                               OpenAiSystemPrompts.ExecuteUnifiedResult + "\n" +
+                               OpenAiSystemPrompts.GarbageCollection;
+
             var userPrompt = contract.PromptText;
+            //var userPrompt = "Execute now";
 
             var requestBody = new
             {
@@ -61,6 +65,7 @@ namespace SandlotWizards.OpenAi
                 .GetProperty("content")
                 .GetString() ?? string.Empty;
 
+            
             if (rawContent.StartsWith("Apologies", StringComparison.OrdinalIgnoreCase))
             {
                 ActionLog.Global.Error("AI returned fallback message instead of result.");

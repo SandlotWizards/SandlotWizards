@@ -16,7 +16,8 @@ namespace SandlotWizards.SoftwareFactory.Services.FeatureBuild.Adapters
             Messages = [ new AiMessage { Role="user", Content = PromptBuilder.BuildUserPrompt(
                 _contract.feature,
                 _contract.DesignSpecText,
-                _contract.WorkingContext.RagChunks
+                _contract.WorkingContext.RagChunks,
+                _contract.ExecutionPlanText
             )}];
         }
     }

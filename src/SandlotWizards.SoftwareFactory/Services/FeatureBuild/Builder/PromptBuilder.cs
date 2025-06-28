@@ -5,7 +5,7 @@ namespace SandlotWizards.SoftwareFactory.Services.FeatureBuild.Builder;
 
 internal static class PromptBuilder
 {
-    public static string BuildUserPrompt(string feature, string designSpecText, List<RagChunk> ragChunks)
+    public static string BuildUserPrompt(string feature, string designSpecText, List<RagChunk> ragChunks, string executionPlanText)
     {
         var sb = new StringBuilder();
 
@@ -30,6 +30,10 @@ internal static class PromptBuilder
 
             sb.AppendLine("---\n");
         }
+
+        //sb.AppendLine("### 📜 Execution Plan");
+        sb.AppendLine(executionPlanText.Trim());
+        //sb.AppendLine("\n---\n");
 
         sb.AppendLine("### 🛠️ Instructions");
         sb.AppendLine("- Only use information provided above.");
